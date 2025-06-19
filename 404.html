@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --error-color: #ef233c;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 50px;
+            right: 100px;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            right: -50px;
+            animation-delay: 4s;
+        }
+        
+        .circle:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            left: 30%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            z-index: -1;
+            filter: blur(2px);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .home-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .home-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .home-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .home-btn:hover::before {
+            left: 100%;
+        }
+        
+        .search-box {
+            margin-top: 2rem;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-right: 50px;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-box button:hover {
+            transform: scale(1.05);
+        }
+        
+        .astro {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            right: 50px;
+            bottom: 50px;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 1.5rem;
+            }
+            
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .astro {
+                width: 100px;
+                height: 100px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .astro {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>页面未找到</h1>
+        <p>抱歉，您访问的页面不存在或已被移除。<br>请检查URL是否正确，或使用下面的搜索框查找您需要的内容。</p>
+        
+        <div class="search-box">
+            <input type="text" placeholder="搜索...">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <a href="/" class="home-btn">返回首页</a>
+    </div>
+    
+    <svg class="astro" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="#4361ee" d="M256 0c-16 0-32 5-45 15-13 10-22 24-25 40l-30 180h200l-30-180c-3-16-12-30-25-40-13-10-29-15-45-15z"/>
+        <path fill="#3f37c9" d="M256 0v235h100l-30-180c-3-16-12-30-25-40-13-10-29-15-45-15z"/>
+        <path fill="#4361ee" d="M424 235c-5-1-9-1-14-1h-44v110h60c5 0 9 0 14-1 23-5 40-25 40-49s-17-44-40-49z"/>
+        <path fill="#3f37c9" d="M424 235c-5-1-9-1-14-1h-44v110h60c5 0 9 0 14-1 23-5 40-25 40-49s-17-44-40-49z"/>
+        <path fill="#4361ee" d="M102 235c-23 5-40 25-40 49s17 44 40 49c5 1 9 1 14 1h60V234h-60c-5 0-9 0-14 1z"/>
+        <path fill="#3f37c9" d="M102 235c-23 5-40 25-40 49s17 44 40 49c5 1 9 1 14 1h60V234h-60c-5 0-9 0-14 1z"/>
+        <path fill="#4361ee" d="M256 512c16 0 32-5 45-15 13-10 22-24 25-40l30-180h-200l30 180c3 16 12 30 25 40 13 10 29 15 45 15z"/>
+        <path fill="#3f37c9" d="M256 512v-235h-100l30 180c3 16 12 30 25 40 13 10 29 15 45 15z"/>
+        <path fill="#4cc9f0" d="M256 235l-60 110h120z"/>
+        <path fill="#4895ef" d="M256 235v110h60z"/>
+    </svg>
+    
+    <script>
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            
+            // 鼠标移动视差效果
+            document.addEventListener('mousemove', function(e) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                container.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+            
+            // 鼠标进入时恢复平面
+            container.addEventListener('mouseenter', function() {
+                container.style.transition = 'all 0.3s ease';
+                container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+            });
+            
+            // 鼠标离开时恢复视差
+            container.addEventListener('mouseleave', function() {
+                container.style.transition = 'all 1s ease';
+                container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
